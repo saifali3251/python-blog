@@ -1,0 +1,278 @@
+{% load blog_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <!-- Google Font awesome -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}" media="screen,projection" />
+  <link type="text/css" rel="stylesheet" href="{% static 'css/blog.css' %}">
+
+  <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
+  <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet"> -->
+
+
+  <title>AlphaBlog</title>
+</head>
+
+<body>
+  <header class="main-header">
+    <nav class="transparent">
+      <div class="container">
+        <div class="nav-wrapper white-text">
+          <a href="{% url 'blog:homepage' %}" class="brand-logo white-text">
+            Alpha<span class="yellow-text">Blog</span>
+          </a>
+          <a href="#" data-activates='mobile-nav' class="button-collapse">
+            <i class="fa fa-bars"></i>
+          </a>
+          <ul class="right hide-on-med-and-down">
+            <li><a href="#aboutus">About Us</a></li>
+            <li><a class="" href="#signup">Sign Up</a></li>
+            <li><a class="" href="#login">LogIn</a></li>
+          </ul>
+          <ul class="side-nav purple" id="mobile-nav">
+            <h4>
+              <a href="{% url 'blog:homepage' %}" class="nav-brand-logo white-text">
+                Alpha<span class="yellow-text">Blog</span>
+              </a>
+            </h4>
+            <li>
+              <div class="divider"></div>
+            </li>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#aboutus">About Us</a></li>
+            <li><a href="#signup">SignIn</a></li>
+            <li><a href="#login">LogIn</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Extended Header -->
+    <div class="showcase container">
+      <div class="row">
+        <div class="col s12 m10 offset-m1 left white-text">
+          <p class="p1">Hello! Welcome to,</p>
+          <h1 class="site-name">AlphaBlog</h1>
+          <p>A complete place to find all blogs related to Python.</p>
+          <a href="#homepage-list-section">
+            <i class="material-icons white-text large">arrow_drop_down</i>
+          </a>
+          <br>
+          <br>
+          <br><br><br>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- <div class="divider"></div> -->
+
+  <div class="container scrollspy homepage-list" id="homepage-list-section">
+    <ul class="collection1">
+      {% for post in posts %}
+      <li class="card z-depth-2 collection-item avatar">
+        <!-- <i class="material-icons blue circle">contacts</i> -->
+        <div class="title black-text">
+          <a href="{{ post.get_absolute_url }}" class="black-text">
+            {{ post.title }}
+          </a>
+        </div>
+        <div class="tags">
+          {% for tag in post.tags.all %}
+          <div class="chip tag-name blue lighten-4">
+            <a href="{% url 'blog:post_list_by_tag' tag.slug %}" class="black-text">
+              {{tag.name}}
+            </a>
+          </div>
+          {% if not forloop.last %} {% endif %}
+          {% endfor %}
+          <span class="published-date right grey-text">
+            <a class="tooltipped black-text lighten-4" data-position="bottom" data-tooltip="Published date"
+              href="{{ post.get_absolute_url }}">
+              {{ post.publish | date:"d M Y" }}
+            </a>
+            <!-- <br> 555-555-3251 -->
+          </span>
+        </div>
+        <!-- <a href="#" class="secondary-content">
+          <i class="material-icons">grade</i>
+        </a> -->
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="read-more center">
+    <a href="{% url 'blog:post_list' %}" class="btn white black-text waves-effect waves-grey">
+      View More</a>
+  </div>
+
+  <!-- <section id="blog-list" class="section list-section black-text scrollspy">
+    <div class="container1">
+      <div class="row content">
+        <div class="col s12">
+
+           {% block content %}
+          {% endblock %} 
+        </div>
+         comment it also <div class="col s12 m3 right-nav grey ">
+            Popular Tags
+            <div>New DIV</div>
+            <div>New DIV</div>
+            <div>New DIV</div>
+            <div>New DIV</div>
+            <div>New DIV</div>
+            <div>New DIV</div>
+            <div>New DIV</div>
+          </div> 
+      </div>
+    </div>
+  </section> -->
+
+  <!-- <header class="main-header">
+    <nav class="transparent">
+      <div class="container">
+        <div class="nav-wrapper">
+          <a href="#" class="brand-logo">Alpha</a>
+          <a href="#" data-activates="mobile-nav" class="button-collapse">
+            <i class="fa fa-bars"></i>
+          </a>
+          <ul class="right hide-on-med-and-down">
+            <li> 
+              <a class="active-link" href="index.html">Home</a>
+            </li>
+            <li>
+              <a href="solutions.html">Solutions</a>
+            </li>
+            <li>
+              <a href="signup.html">Sign Up</a>
+            </li>
+            <li>
+              <a href="#login-modal" class="btn purple modal-trigger">Login</a>
+            </li>
+            <li>
+              <a href="https://facebook.com">
+                <i class="fab fa-facebook"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://twitter.com">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://instagram.com">
+                <i class="fab fa-instagram"></i>
+              </a>
+            </li>
+          </ul>
+          <ul class="side-nav" id="mobile-nav">
+            <h4 class="purple-text text-darken-4 center">Quazzu</h4>
+            <li>
+              <div class="divider"></div>
+            </li>
+            <li>
+              <a href="index.html">
+                <i class="fa fa-home grey-text text-darken-4"></i> Home</a>
+            </li>
+            <li>
+              <a href="solutions.html">
+                <i class="fa fa-cog grey-text text-darken-4"></i> Solutions</a>
+            </li>
+            <li>
+              <a href="signup.html">
+                <i class="fa fa-users grey-text text-darken-4"></i> Sign Up</a>
+            </li>
+            <li>
+              <div class="divider"></div>
+            </li>
+            <li>
+              <a href="#" class="btn purple">Login</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+     Showcase
+    <div class="showcase container">
+      <div class="row">
+        <div class="col s12 m10 offset-m1 center">
+          <h5>Welcome To Quazzu</h5>
+          <h1>Build For The Future</h1>
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit fugit deserunt quos provident aliquam inventore.</p>
+          <br>
+          <br>
+          <a href="solutions.html" class="btn btn-large white purple-text">Learn More</a>
+          <a href="signup.html" class="btn btn-large purple white-text">Sign Up</a>
+        </div>
+      </div>
+    </div>
+  </header> -->
+
+
+  <!-- Footer -->
+  <footer class="page-footer purple darken-3">
+    <div class="container">
+      <div class="row">
+        <div class="col s12 m6">
+          <h5 class="grey-text text-lighten-3 scrollspy" id="aboutus">About Us</h5>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, reprehenderit. Error saepe nesciunt,
+            commodi
+            eos quae libero? Quis, explicabo unde!</p>
+        </div>
+        <div class="col s12 m4 offset-m2">
+          <h5 class="grey-text text-lighten-3">Links</h5>
+          <ul>
+            <li>
+              <a href="" class="white-text">Link 1</a>
+            </li>
+            <li>
+              <a href="" class="white-text">Link 2</a>
+            </li>
+            <li>
+              <a href="" class="white-text">Link 3</a>
+            </li>
+            <li>
+              <a href="" class="white-text">Link 4</a>
+
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        Copyright &copy; 2018
+        <a href="#" class="grey-text text-lighten-3 right">Terms & Conditions</a>
+      </div>
+    </div>
+  </footer>
+
+  <!--Import jQuery before materialize.js-->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <!-- Compiled and minified JavaScript -->
+  <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('.button-collapse').sideNav();
+      $('.scrollspy').scrollSpy();
+
+    });
+  </script>
+</body>
+
+</html>

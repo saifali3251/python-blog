@@ -1,0 +1,137 @@
+{% extends 'blog/base.html' %}
+
+
+{% block content %}
+<div class="">
+  <!-- Blog Title -->
+  <section class="section title-section ">
+    <h4 class="post-title center-align black-text">{{ post.title }}</h4>
+    <div class="published-date center">Published : {{ post.publish | date:"d M Y" }}</div>
+  </section>
+
+  <div class="divider grey"></div>
+
+  <!-- Blog Detail & Related Blogs -->
+  <section class="section post-detail">
+    <div class="container">
+      <div class="row">
+        <div class="col s12 m9">
+          <!-- <h4 class="post-title center-align black-text">{{ post.title }}</h4> -->
+          <!-- <div class="published-date center">Published : {{ post.publish | date:"d M Y" }}</div> -->
+          <div class="card z-depth-2 text-area">
+              <p class="post-body">{{ post.body }}</p>
+          </div>
+          <div class="divider"></div>
+          {% with comments.count as total_comments %}
+          <div class="right comment-count">
+            {{ total_comments }} comment{{ total_comments|pluralize }}
+          </div>
+          {% endwith %}
+          <div class="divider"></div>
+          <br><br>
+          <div class="">
+            <ul class="collection">
+              {% for comment in comments %}
+              <li class="collection-item avatar">
+                <i class="material-icons blue circle">contacts</i>
+                <span class="title">{{ comment.name }}</span>
+                <p>{{ comment.body }}
+                  <br> {{comment.created | date:"d M Y"}}
+                </p>
+                <a href="#" class="secondary-content">
+                  <i class="material-icons">user</i>
+                  <!-- <i class="fa fa-user"></i> -->
+                </a>
+              </li>
+              {% empty %}
+              <p>There are no comments yet.</p>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+
+        <div class="col s12 m3">
+          <div class="similar-posts grey lighten-3">
+            <table>
+              <thead>
+                <tr>
+                  <th>Similar Posts</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for post in similar_posts %}
+                <tr>
+                  <th>
+                    <a href="{{post.get_absolute_url}}">
+                      <div class="dark-blue-text similar-posts-title">{{post.title}}</div>
+                    </a>
+                  </th>
+                </tr>
+                {% empty %}
+                <div>No similar posts found!</div>
+                {% endfor %}
+              </tbody>
+            </table>
+
+            <!-- <div class="center grey lighten-2" style="padding-top: 10px;">Similar Posts</div>
+            <div class="divider black"></div>
+            {% for post in similar_posts %}
+            <div class="">
+              <a href="{{post.get_absolute_url}}">
+                <div class="dark-blue-text similar-posts-title">{{post.title}}</div>
+              </a>
+            </div>
+            <div class="divider"></div>
+            {% empty %}
+            <div>No similar posts found!</div>
+            {% endfor %}
+          </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- <section class="section-comment black-text">
+    <div class="container">
+      <div class="row">
+        {% for comment in comments %}
+        <div class="comment">
+          <p class="info">
+            Comment {{ forloop.counter }} by {{ comment.name }}
+            {{ comment.created | date:"d M Y" }}
+          </p>
+          {{ comment.body|linebreaks }}
+        </div>
+        {% empty %}
+        <p>There are no comments yet.</p>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="divider"></div>
+  </section> -->
+
+  <section class="section-commentForm black-text">
+    <div class="container">
+      <div class="row">
+        <div class="col s12 m9">
+          <div class="card-panel grey lighten-2">
+            {% if new_comment %}
+            <h2>Your comment has been added.</h2>
+            {% else %}
+            <p>Add Comments</p>
+            <form method="post">
+              {{ comment_form.as_p }}
+              {% csrf_token %}
+              <input type="submit" value="Add comment" class="btn">
+            </form>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="divider"></div>
+  </section>
+
+</div>
+{% endblock %}

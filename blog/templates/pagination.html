@@ -1,0 +1,28 @@
+{% load static %}
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}" media="screen,projection" />
+</head>
+
+<ul class="pagination center">
+    {% if page.has_previous %}
+    <li>
+      <a class="black-text" href="?page={{ page.previous_page_number }}">
+        <i class="material-icons">chevron_left</i>
+      </a>
+    </li>
+    {% endif %}
+    <li class="current">
+      Page {{ page.number }} of {{ page.paginator.num_pages }}
+    </li>
+    {% if page.has_next %}
+    <li>
+      <a class="black-text" href="?page={{ page.next_page_number }}">
+        <i class="material-icons">chevron_right</i>
+      </a>
+    </li>
+    {% endif %}
+</ul>
