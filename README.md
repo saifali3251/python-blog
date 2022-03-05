@@ -17,7 +17,17 @@ A Python Blog project with following features:
 ![image](https://user-images.githubusercontent.com/37900854/156887154-7d0fcdd4-1481-4f96-adf3-25ac151bf468.png)
 
 
+
+
 ![image](https://user-images.githubusercontent.com/37900854/156887216-caf20741-1103-4fab-9b9e-2022f5d45f43.png)
+
+
+
+![image](https://user-images.githubusercontent.com/37900854/156887859-2c783c67-2195-4fde-92cb-0a1362e5e355.png)
+
+
+
+![image](https://user-images.githubusercontent.com/37900854/156887893-aca6761b-d0e9-43fb-b42e-3f1e2e4e4306.png)
 
 
 More features will be added in future:
