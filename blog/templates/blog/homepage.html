@@ -27,7 +27,7 @@
   <title>AlphaBlog</title>
 </head>
 
-<body>
+<body> 
   <header class="main-header">
     <nav class="transparent">
       <div class="container">
@@ -40,8 +40,14 @@
           </a>
           <ul class="right hide-on-med-and-down">
             <li><a href="#aboutus">About Us</a></li>
-            <li><a class="" href="#signup">Sign Up</a></li>
-            <li><a class="" href="#login">LogIn</a></li>
+            {% if user.is_authenticated %}
+              <li><a class="" href="{% url 'profile' %}">{{user.username}}</a></li>
+              <li><a class="red-text" href="{% url 'logout' %}">Log Out</a></li>
+            {% else %}
+            <li><a class="" href="{% url 'register' %}">Sign Up</a></li>
+            <li><a class="" href="{% url 'login' %}">LogIn</a></li>
+            {% endif %}
+
           </ul>
           <ul class="side-nav purple" id="mobile-nav">
             <h4>
@@ -54,8 +60,13 @@
             </li>
             <li><a href="#home">Home</a></li>
             <li><a href="#aboutus">About Us</a></li>
-            <li><a href="#signup">SignIn</a></li>
-            <li><a href="#login">LogIn</a></li>
+            {% if user.is_authenticated %}
+              <li><a class="" href="{% url 'profile' %}">{{user.username}}</a></li>
+              <li><a class="red" href="{% url 'logout' %}">Log Out</a></li>
+            {% else %}
+            <li><a href="{% url 'register' %}">SignIn</a></li>
+            <li><a href="{% url 'login' %}">LogIn</a></li>
+            {% endif %}
           </ul>
         </div>
       </div>

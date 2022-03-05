@@ -82,11 +82,10 @@
 
 <div class="list-section">
   <div class="row">
-    <div class="col s12 m7 offset-m2 lighten-3">
+    <div class="col s12 m6 offset-m2 lighten-3">
       <ul class="list-collection">
         {% for post in posts %}
         <li class="card z-depth-2 collection-item avatar">
-          <!-- <i class="material-icons blue circle">contacts</i> -->
             <div class="title blue-text">
               <a href="{{ post.get_absolute_url }}" class="black-text">
                 {{ post.title }}
@@ -109,16 +108,13 @@
                 <!-- <br> 555-555-3251 -->
               </span>
             </div>
-            <!-- <a href="#" class="secondary-content">
-            <i class="material-icons">grade</i>
-          </a> -->
-            </li>
-            {% endfor %}
-            </ul>
-        </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
 
-        <div class="col s12 m3">
-          <div class="popular-posts z-depth-2">
+    <div class="col s12 m3 offset-m1">
+        <div class="popular-posts z-depth-2">
             {% get_most_commented_posts as popular_posts %}
             <table>
               <thead class="table-head-data blue-text">
@@ -142,6 +138,7 @@
       </div>
     </div>
   </div>
+</div>
   <!-- {{post.body|truncatewords:20|linebreaks}} -->
   {% include "pagination.html" with page=posts %}
   {% endblock %}

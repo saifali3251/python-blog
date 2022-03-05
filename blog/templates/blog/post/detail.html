@@ -9,16 +9,16 @@
     <div class="published-date center">Published : {{ post.publish | date:"d M Y" }}</div>
   </section>
 
-  <div class="divider grey"></div>
+  {% comment %} <div class="divider grey"></div> {% endcomment %}
 
   <!-- Blog Detail & Related Blogs -->
   <section class="section post-detail">
-    <div class="container">
+    <div class="container1">
       <div class="row">
-        <div class="col s12 m9">
+        <div class="col s12 m9"> 
           <!-- <h4 class="post-title center-align black-text">{{ post.title }}</h4> -->
           <!-- <div class="published-date center">Published : {{ post.publish | date:"d M Y" }}</div> -->
-          <div class="card z-depth-2 text-area">
+          <div class="card1 z-depth-1 text-area">
               <p class="post-body">{{ post.body }}</p>
           </div>
           <div class="divider"></div>
@@ -51,7 +51,7 @@
         </div>
 
         <div class="col s12 m3">
-          <div class="similar-posts grey lighten-3">
+          <div class="pinned similar-posts grey lighten-3">
             <table>
               <thead>
                 <tr>
