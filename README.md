@@ -3,13 +3,13 @@
 A Python Blog project with following features:
   - Users can view all the blogs 
   - Users can comment on any blog, login required
-  - Users can login/signup into there account
+  - Users can login or create new account
   - Users can edit their profile
-  - Users can add blogs and edit there blogs
+  - Users can add blogs and edit respective blogs
   - Users can save unpublished blogs as draft
-  - Drafts blogs can be deleted untill published
+  - Drafts blogs can be deleted until published
   - Each blog contains related tags, users can view blogs based on tags
-  - Similar blogs and popular blogs categorues are available
+  - Similar blogs and popular blogs based on viewed blogs are available
   - Proper search system is available 
 
 
