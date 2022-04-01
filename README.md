@@ -37,6 +37,6 @@ More features will be added in future:
   - Add to read later functionality
   - More better user profile(adding profile image upload and more)
   - Login by social sites will be added
-  - Users can remove imporper comments from their posts
+  - Users can report/delete comments from their posts
   
   
